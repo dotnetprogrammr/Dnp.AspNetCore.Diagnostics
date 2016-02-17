@@ -28,7 +28,7 @@ namespace Dnp.AspNetCore.Diagnostics
         /// </summary>
         /// <param name="statusCode">The status code.</param>
         /// <returns>A <see cref="MappedTransformationCollectionBuilder"/> instance.</returns>
-        public MappedTransformationCollectionBuilder Map(int statusCode)
+        public MappedTransformationCollectionBuilder Return(int statusCode)
         {
             return new MappedTransformationCollectionBuilder(Transformations, statusCode);
         }
@@ -67,7 +67,7 @@ namespace Dnp.AspNetCore.Diagnostics
         /// </summary>
         /// <typeparam name="T">The exception.</typeparam>
         /// <returns>A <see cref="ExceptionTransformationCollectionBuilder"/> instance.</returns>
-        public ExceptionTransformationCollectionBuilder To<T>() where T : Exception
+        public ExceptionTransformationCollectionBuilder For<T>() where T : Exception
         {
             Transformations.AddMappingFor<T>(StatusCode);
             return new ExceptionTransformationCollectionBuilder(Transformations, StatusCode);
@@ -79,7 +79,10 @@ namespace Dnp.AspNetCore.Diagnostics
     /// </summary>
     public class TransformationCollectionBuilder
     {
-        internal TransformationCollectionBuilder()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransformationCollectionBuilder"/> class.
+        /// </summary>
+        public TransformationCollectionBuilder()
         {
             Transformations = new TransformationCollection();
         }
@@ -87,20 +90,11 @@ namespace Dnp.AspNetCore.Diagnostics
         internal TransformationCollection Transformations { get; }
 
         /// <summary>
-        /// Initializes a new <see cref="TransformationCollectionBuilder"/> instance.
-        /// </summary>
-        /// <returns>A new <see cref="TransformationCollectionBuilder"/> instance.</returns>
-        public static TransformationCollectionBuilder Create()
-        {
-            return new TransformationCollectionBuilder();
-        }
-
-        /// <summary>
         /// Defines a new status code against which exceptions are to be mapped.
         /// </summary>
         /// <param name="statusCode">The status code.</param>
         /// <returns>A <see cref="MappedTransformationCollectionBuilder"/> instance.</returns>
-        public MappedTransformationCollectionBuilder Map(int statusCode)
+        public MappedTransformationCollectionBuilder Return(int statusCode)
         {
             return new MappedTransformationCollectionBuilder(Transformations, statusCode);
         }

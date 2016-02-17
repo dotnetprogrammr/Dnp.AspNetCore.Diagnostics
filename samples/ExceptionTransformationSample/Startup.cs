@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using System;
+
+using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 
+using Dnp.AspNetCore.Diagnostics;
+
 namespace ExceptionTransformationSample
 {
-    using System;
-
-    using Dnp.AspNetCore.Diagnostics;
-
-    using Microsoft.AspNetCore.Builder;
-
     public class Startup
     {
         public void Configure(IApplicationBuilder app)
@@ -35,10 +33,9 @@ namespace ExceptionTransformationSample
 
         private static ITransformationCollection BuildTransformations()
         {
-            return TransformationCollectionBuilder
-                .Create()
-                .Map(404)
-                .To<ArgumentNullException>()
+            return new TransformationCollectionBuilder()
+                .Return(404)
+                .For<ArgumentNullException>()
                 .Or<ArgumentOutOfRangeException>()
                 .Transformations;
         }

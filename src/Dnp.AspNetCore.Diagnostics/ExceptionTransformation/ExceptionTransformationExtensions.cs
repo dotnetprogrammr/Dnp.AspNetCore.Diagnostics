@@ -4,7 +4,7 @@ using Dnp.AspNetCore.Diagnostics;
 
 using Microsoft.AspNet.Builder;
 
-namespace Microsoft.AspNetCore.Builder
+namespace Microsoft.AspNet.Builder
 {
     public static class ExceptionTransformationExtensions
     {

@@ -20,7 +20,7 @@ namespace Dnp.AspNetCore.Diagnostics.Test
             var builder = new ExceptionTransformationCollectionBuilder(fakeITransformCollection, 500);
 
             // Act
-            var newBuilder = builder.Map(404);
+            var newBuilder = builder.Return(404);
 
             // Assert
             Assert.NotNull(newBuilder);
@@ -35,7 +35,7 @@ namespace Dnp.AspNetCore.Diagnostics.Test
             var builder = new ExceptionTransformationCollectionBuilder(fakeITransformCollection, 500);
 
             // Act
-            var newBuilder = builder.Map(404);
+            var newBuilder = builder.Return(404);
 
             // Assert
             Assert.NotNull(newBuilder);
@@ -135,7 +135,7 @@ namespace Dnp.AspNetCore.Diagnostics.Test
             var builder = new MappedTransformationCollectionBuilder(fakeITransformCollection, 500);
 
             // Act
-            var newBuilder = builder.To<Exception>();
+            var newBuilder = builder.For<Exception>();
 
             // Assert
             A.CallTo(fakeITransformCollection).Where(call => call.Method.Name == "AddMappingFor").MustHaveHappened(Repeated.Exactly.Once);
@@ -154,7 +154,7 @@ namespace Dnp.AspNetCore.Diagnostics.Test
             var builder = new MappedTransformationCollectionBuilder(fakeITransformCollection, 500);
 
             // Act
-            var newBuilder = builder.To<Exception>();
+            var newBuilder = builder.For<Exception>();
 
             // Assert
             Assert.NotNull(newBuilder);
@@ -202,10 +202,10 @@ namespace Dnp.AspNetCore.Diagnostics.Test
         public void Map_WhenInvoked_ReturnsAnInstanceWithTheSameITransformationCollection()
         {
             // Arrange
-            var builder = TransformationCollectionBuilder.Create();
+            var builder = new TransformationCollectionBuilder();
 
             // Act
-            var newBuilder = builder.Map(404);
+            var newBuilder = builder.Return(404);
 
             // Assert
             Assert.NotNull(newBuilder);
@@ -217,10 +217,10 @@ namespace Dnp.AspNetCore.Diagnostics.Test
         public void Map_WhenInvoked_ReturnsAnInstanceWithTheSameStatusCode()
         {
             // Arrange
-            var builder = TransformationCollectionBuilder.Create();
+            var builder = new TransformationCollectionBuilder();
 
             // Act
-            var newBuilder = builder.Map(404);
+            var newBuilder = builder.Return(404);
 
             // Assert
             Assert.NotNull(newBuilder);
