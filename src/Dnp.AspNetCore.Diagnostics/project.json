@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0-*",
+    "title": "dnp.aspnetcore.dianostics",
+  "dependencies": {
+    "FakeItEasy": "1.25.3",
+    "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Http.Extensions": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Logging.Abstractions": "1.0.0-rc1-final",
+    "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
+    "System.Collections.Immutable": "1.1.38-beta-23516"
+  },
+    "frameworks": {
+      "net46": {
+        "frameworkAssemblies": {
+          "System.Runtime": "4.0.0"
+        }
+      }
+    }
+}

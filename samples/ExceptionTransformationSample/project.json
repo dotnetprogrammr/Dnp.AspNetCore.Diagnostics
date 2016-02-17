@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "Dnp.AspNetCore.Diagnostics": "1.0.0-*",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final"
+  },
+  "commands": {
+    "web": "Microsoft.AspNet.Server.Kestrel"
+  },
+  "frameworks": {
+    "dnx46": { }
+  },
+  "exclude": [
+    "wwwroot"
+  ]
+}
