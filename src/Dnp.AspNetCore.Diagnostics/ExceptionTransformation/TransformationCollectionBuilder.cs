@@ -75,7 +75,7 @@ namespace Dnp.AspNetCore.Diagnostics
     }
 
     /// <summary>
-    /// Provides a mechanism through which transformations can be defined.
+    /// Provides a mechanism for defining transformations.
     /// </summary>
     public class TransformationCollectionBuilder
     {
