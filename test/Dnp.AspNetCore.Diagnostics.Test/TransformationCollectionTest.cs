@@ -5,7 +5,7 @@ using FakeItEasy;
 
 using Xunit;
 
-namespace DNP.AspNetCore.Diagnostics.Test
+namespace Dnp.AspNetCore.Diagnostics.Test
 {
     public class TransformationCollectionTest
     {
@@ -40,39 +40,6 @@ namespace DNP.AspNetCore.Diagnostics.Test
             Assert.Equal(1, transformationCollection.Transformations.Count);
             Assert.True(transformationCollection.Transformations.ContainsKey(typeof(ArgumentNullException)));
             Assert.Equal(400, transformationCollection.Transformations[typeof(ArgumentNullException)]);
-        }
-
-        [Fact]
-        public void Map_WhenInvoked_ReturnsAnInstanceWithTheSameITransformationCollection()
-        {
-            // Arrange
-            var transformationCollection = new TransformationCollection();
-
-            // Act
-            var statusCodeMapping = transformationCollection.Map(404);
-
-            // Assert
-            Assert.NotNull(statusCodeMapping);
-            Assert.IsAssignableFrom(typeof(StatusCodeMapping), statusCodeMapping);
-            var typedMapping = statusCodeMapping as StatusCodeMapping;
-            Assert.Same(transformationCollection, typedMapping.TransformationCollection);
-        }
-
-        [Fact]
-        public void Map_WhenInvoked_ReturnsAnInstanceWithTheSameStatusCode()
-        {
-            // Arrange
-            var transformationCollection = new TransformationCollection();
-
-            // Act
-            var statusCodeMapping = transformationCollection.Map(404);
-
-            // Assert
-            Assert.NotNull(statusCodeMapping);
-            Assert.IsAssignableFrom(typeof(StatusCodeMapping), statusCodeMapping);
-            var typedMapping = statusCodeMapping as StatusCodeMapping;
-            Assert.NotNull(typedMapping);
-            Assert.Equal(404, typedMapping.StatusCode);
         }
 
         [Fact]

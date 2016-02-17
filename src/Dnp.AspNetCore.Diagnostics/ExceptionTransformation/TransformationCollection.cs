@@ -1,10 +1,9 @@
-
 using System;
 using System.Collections.Immutable;
 
-namespace DNP.AspNetCore.Diagnostics
+namespace Dnp.AspNetCore.Diagnostics
 {
-    public sealed class TransformationCollection : ITransformationCollection
+    internal sealed class TransformationCollection : ITransformationCollection
     {
         public TransformationCollection()
         {
@@ -12,16 +11,6 @@ namespace DNP.AspNetCore.Diagnostics
         }
 
         internal ImmutableDictionary<Type, int> Transformations { get; private set; }
-
-        public static TransformationCollection Create()
-        {
-            return new TransformationCollection();
-        }
-
-        public IStatusCodeMapping Map(int statusCode)
-        {
-            return new StatusCodeMapping(this, statusCode);
-        }
 
         public void AddMappingFor<T>(int statusCode) where T : Exception
         {
@@ -35,7 +24,7 @@ namespace DNP.AspNetCore.Diagnostics
 
         public int TransformException(Exception ex, int? defaultStatusCode = null)
         {
-            int? matchedStatusCode = FindStatusCodeForException(ex);
+            var matchedStatusCode = FindStatusCodeForException(ex);
             if (matchedStatusCode.HasValue)
             {
                 return matchedStatusCode.Value;

@@ -1,8 +1,8 @@
-namespace DNP.AspNetCore.Diagnostics
+namespace Dnp.AspNetCore.Diagnostics
 {
     using System;
 
-    public interface ITransformationCollection : IMapping
+    public interface ITransformationCollection
     {
         void AddMappingFor<T>(int statusCode) where T : Exception;
 

@@ -6,7 +6,7 @@ using Microsoft.AspNet.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 
-namespace DNP.AspNetCore.Diagnostics
+namespace Dnp.AspNetCore.Diagnostics
 {
     public class ExceptionTransformationMiddleware
     {

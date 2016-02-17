@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DNP.AspNetCore.Diagnostics
+namespace Dnp.AspNetCore.Diagnostics
 {
     public class ExceptionNotMappedException : Exception
     {

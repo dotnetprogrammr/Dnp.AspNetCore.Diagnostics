@@ -1,4 +1,4 @@
-namespace DNP.AspNetCore.Diagnostics
+namespace Dnp.AspNetCore.Diagnostics
 {
     public class ExceptionTransformationOptions
     {
@@ -7,7 +7,7 @@ namespace DNP.AspNetCore.Diagnostics
             this.Transformations = new TransformationCollection();
         }
 
-        internal ExceptionTransformationOptions(TransformationCollection transformations)
+        internal ExceptionTransformationOptions(ITransformationCollection transformations)
         {
             this.Transformations = transformations;
         }

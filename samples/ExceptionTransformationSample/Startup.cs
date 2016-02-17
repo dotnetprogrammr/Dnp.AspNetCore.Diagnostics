@@ -6,7 +6,7 @@ namespace ExceptionTransformationSample
 {
     using System;
 
-    using DNP.AspNetCore.Diagnostics;
+    using Dnp.AspNetCore.Diagnostics;
 
     using Microsoft.AspNetCore.Builder;
 
@@ -33,14 +33,14 @@ namespace ExceptionTransformationSample
 
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
 
-        private static TransformationCollection BuildTransformations()
+        private static ITransformationCollection BuildTransformations()
         {
-            var transformations = TransformationCollection
+            return TransformationCollectionBuilder
                 .Create()
                 .Map(404)
                 .To<ArgumentNullException>()
-                .Or<ArgumentOutOfRangeException>();
-            return transformations;
+                .Or<ArgumentOutOfRangeException>()
+                .Transformations;
         }
     }
 }

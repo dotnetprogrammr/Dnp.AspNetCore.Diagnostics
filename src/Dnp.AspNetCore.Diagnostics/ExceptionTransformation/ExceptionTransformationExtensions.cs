@@ -1,6 +1,6 @@
 ﻿using System;
 
-using DNP.AspNetCore.Diagnostics;
+using Dnp.AspNetCore.Diagnostics;
 
 using Microsoft.AspNet.Builder;
 
@@ -37,7 +37,7 @@ namespace Microsoft.AspNetCore.Builder
         /// <param name="app"></param>
         /// <param name="transformations"></param>
         /// <returns></returns>
-        public static IApplicationBuilder UseExceptionTransformations(this IApplicationBuilder app, TransformationCollection transformations)
+        public static IApplicationBuilder UseExceptionTransformations(this IApplicationBuilder app, ITransformationCollection transformations)
         {
             if (app == null)
             {

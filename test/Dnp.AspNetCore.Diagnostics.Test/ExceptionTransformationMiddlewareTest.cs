@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Builder;
 
 using Xunit;
 
-namespace DNP.AspNetCore.Diagnostics.Test
+namespace Dnp.AspNetCore.Diagnostics.Test
 {
-    public class ExceptionTransformationTest
+    public class ExceptionTransformationMiddlewareTest
     {
         [Fact]
         public async Task DoesNotModifyCacheHeaders_WhenNoExceptionIsThrown()
@@ -24,8 +24,12 @@ namespace DNP.AspNetCore.Diagnostics.Test
             var builder = new WebHostBuilder()
                 .UseStartup(app =>
                 {
-                    var options = new ExceptionTransformationOptions();
-                    options.Transformations.Map(404).To<Exception>();
+                    var transformations = TransformationCollectionBuilder
+                        .Create()
+                        .Map(404)
+                        .To<Exception>()
+                        .Transformations;
+                    var options = new ExceptionTransformationOptions(transformations);
 
                     app.UseExceptionTransformations(options);
 
@@ -85,8 +89,12 @@ namespace DNP.AspNetCore.Diagnostics.Test
                         Assert.Equal("Something bad happened", exception.Message);
                     });
 
-                    var options = new ExceptionTransformationOptions();
-                    options.Transformations.Map(404).To<Exception>();
+                    var transformations = TransformationCollectionBuilder
+                        .Create()
+                        .Map(404)
+                        .To<Exception>()
+                        .Transformations;
+                    var options = new ExceptionTransformationOptions(transformations);
 
                     app.UseExceptionTransformations(options);
 
@@ -146,8 +154,12 @@ namespace DNP.AspNetCore.Diagnostics.Test
                         Assert.Equal("Something bad happened", exception.Message);
                     });
 
-                    var options = new ExceptionTransformationOptions();
-                    options.Transformations.Map(404).To<Exception>();
+                    var transformations = TransformationCollectionBuilder
+                        .Create()
+                        .Map(404)
+                        .To<Exception>()
+                        .Transformations;
+                    var options = new ExceptionTransformationOptions(transformations);
 
                     app.UseExceptionTransformations(options);
 
@@ -172,8 +184,12 @@ namespace DNP.AspNetCore.Diagnostics.Test
         {
             var builder = new WebHostBuilder().UseStartup(app =>
             {
-                var options = new ExceptionTransformationOptions();
-                options.Transformations.Map(404).To<Exception>();
+                var transformations = TransformationCollectionBuilder
+                    .Create()
+                    .Map(404)
+                    .To<Exception>()
+                    .Transformations;
+                var options = new ExceptionTransformationOptions(transformations);
 
                 app.UseExceptionTransformations(options);
 
@@ -199,8 +215,12 @@ namespace DNP.AspNetCore.Diagnostics.Test
         {
             var builder = new WebHostBuilder().UseStartup(app =>
             {
-                var options = new ExceptionTransformationOptions();
-                options.Transformations.Map(404).To<InvalidOperationException>();
+                var transformations = TransformationCollectionBuilder
+                    .Create()
+                    .Map(404)
+                    .To<InvalidOperationException>()
+                    .Transformations;
+                var options = new ExceptionTransformationOptions(transformations);
 
                 app.UseExceptionTransformations(options);
 
